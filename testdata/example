@@ -1,0 +1,1 @@
+curl -id '{"state": "lost", "amount": 0, "transactionId": "c6464f70-967f-4584-a120-ee6d36cbec25"}' -H "Content-Type: application/json" -H "Source-Type: client" -X POST http://localhost/your_url

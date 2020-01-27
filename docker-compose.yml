@@ -1,0 +1,31 @@
+version: '3'
+services:
+#  admin_db:
+#    image: dpage/pgadmin4
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=test@mail.ru
+#      - PGADMIN_DEFAULT_PASSWORD=qwerty
+#    ports:
+#      - "8081:80"
+#    depends_on:
+#      - example_db
+  example_server:
+    image: golang:1.12
+    depends_on:
+      - example_db
+    volumes:
+      - .:/go/src
+    command: bash -c "cd /go/src/ && go run ."
+  example_db:
+    image: postgres:11.1
+    environment:
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=example_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+volumes:
+  src:
+  data:
